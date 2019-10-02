@@ -11,14 +11,18 @@ var spotify = new Spotify(keys.spotify);
 switch (process.argv[2]) {
   case 'spotify-this-song':
     var defaultTitle = 'The Sign';
-    if (process.argv[3] === null) {
+    if (process.argv.length < 4) {
       searchSpotify(defaultTitle);
     } else {
       searchSpotify(process.argv[3]);
     }
     break;
   case 'movie-this':
-    searchMovies(process.argv[3]);
+    if (process.argv.length < 4) {
+      searchMovies('Mr. Nobody');
+    } else {
+      searchMovies(process.argv[3]);
+    }
     break;
   case 'concert-this':
     searchConcerts(process.argv[3]);
@@ -27,15 +31,6 @@ switch (process.argv[2]) {
     doWhatItSays();
     break;
 }
-
-
-
-
-
-
-
-
-
 
 function searchSpotify(userInput) {
 
